@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import type { Ttrainings } from "../types";
 import type { GridColDef} from '@mui/x-data-grid';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid} from '@mui/x-data-grid';
+import { format } from "date-fns";
+
+const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    return format (date, 'dd.MM.yyyy HH:mm')
+}
 
 export default function TrainingsList(){
+
     const [trainings, setTrainings] = useState<Ttrainings[]>([]);
 
     const columns: GridColDef[] = [
@@ -19,7 +26,11 @@ export default function TrainingsList(){
             
             {field: 'activity', headerName: 'Activity', flex: 1},
             {field: 'duration', headerName: 'Duration', flex: 1},
-            {field: 'date', headerName: 'Date', flex: 1},
+            {field: 'date', 
+            headerName: 'Date', 
+            flex: 1, 
+            valueFormatter: (value) => formatDate(value)},
+
             {field: 'id', headerName: 'id', flex: 1}
         ];
 

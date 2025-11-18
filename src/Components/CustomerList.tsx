@@ -16,7 +16,7 @@ export default function CustomerList(){
         {field: 'city', headerName: 'City', flex: 1},
         {field: 'email', headerName: 'Email', flex: 1},
         {field: 'phone', headerName: 'Phone', flex: 1}
-    ]
+    ];
 
     const getCustomers = async () => {
         try {

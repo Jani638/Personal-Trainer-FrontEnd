@@ -11,9 +11,9 @@ export type Tcustomer = {
 
 export type Ttrainings = {
     id: Number;
+    firstname: string;
+    lastname: string;
     date: Date;
     duration: Number;
     activity: string;
-    customer: string;
-
 }

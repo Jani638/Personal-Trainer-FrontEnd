@@ -1,4 +1,5 @@
 export type Tcustomer = {
+    id: number;
     firstname: string;
     lastname: string;
     email: string;

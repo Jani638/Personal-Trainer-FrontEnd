@@ -29,9 +29,7 @@ export default function TrainingsList(){
             {field: 'date', 
             headerName: 'Date', 
             flex: 1, 
-            valueFormatter: (value) => formatDate(value)},
-
-            {field: 'id', headerName: 'id', flex: 1}
+            valueFormatter: (value) => formatDate(value)}
         ];
 
     const getTrainings = async () => {

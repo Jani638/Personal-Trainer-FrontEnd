@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Tcustomer } from "../types";
 import type { GridColDef} from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
+import AddCustomer from "./AddCustomer";
 
 
 
@@ -30,9 +31,33 @@ export default function CustomerList(){
             console.log(error);
         }
     }
+
+    const handleAdd = async(newCustomer: Tcustomer) => {
+        try {
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newCustomer)
+            }
+            
+            const response = await fetch('https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers', options);
+                if(!response.ok) {
+                    throw new Error(`Failed to add customer: ${response.statusText}`);
+                }
+                getCustomers();
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
     useEffect(() => {getCustomers(); }, []);
 
     return (
+        <div>
+        <AddCustomer handleAdd={handleAdd} />
         <div>
             <DataGrid 
             getRowId={(row) => row._links.self.href} 
@@ -40,5 +65,6 @@ export default function CustomerList(){
             columns={columns} 
             />
         </div>
-    );
+    </div>
+    )
 }

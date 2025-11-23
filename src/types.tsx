@@ -17,3 +17,7 @@ export type Ttrainings = {
     duration: Number;
     activity: string;
 }
+
+export type AddCustomerProps = {
+    handleAdd: (customer: Tcustomer) => void;
+}

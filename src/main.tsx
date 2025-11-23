@@ -6,6 +6,11 @@ import Customers from './pages/Customers.tsx'
 import Trainings from './pages/Trainings.tsx'
 import Home from './pages/Home.tsx';
 
+fetch('https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/reset', 
+  {method: 'POST'}
+);
+
+
 const router = createBrowserRouter([
   {
     path: '/',

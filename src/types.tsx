@@ -21,3 +21,9 @@ export type Ttrainings = {
 export type AddCustomerProps = {
     handleAdd: (customer: Tcustomer) => void;
 }
+
+export type EditCustomerProps = {
+    url: string;
+    currentCustomer: Tcustomer;
+    handleUpdate: (url: string, customer: Tcustomer) => void;
+}

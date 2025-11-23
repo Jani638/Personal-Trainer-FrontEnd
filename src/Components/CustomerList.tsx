@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Tcustomer } from "../types";
-import type { GridColDef} from '@mui/x-data-grid';
+import type { GridColDef, GridRowParams} from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
 import AddCustomer from "./AddCustomer";
+import EditCustomer from "./EditCustomer";
 
 
 
@@ -16,7 +17,14 @@ export default function CustomerList(){
         {field: 'postcode', headerName: 'Postalcode', flex: 1},
         {field: 'city', headerName: 'City', flex: 1},
         {field: 'email', headerName: 'Email', flex: 1},
-        {field: 'phone', headerName: 'Phone', flex: 1}
+        {field: 'phone', headerName: 'Phone', flex: 1},
+        {field: 'actions', flex: 1,
+            type: 'actions',
+            width: 150,
+            getActions: (params: GridRowParams) => [
+                <EditCustomer handleUpdate={handleUpdate} url={params.row._links.self.href} currentCustomer={params.row}/>
+            ]
+        }
     ];
 
     const getCustomers = async () => {
@@ -50,6 +58,27 @@ export default function CustomerList(){
 
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const handleUpdate = async (url: string , customer: Tcustomer) => {
+        try {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(customer)
+            }
+            
+            const response = await fetch(url, options);
+                if(!response.ok) {
+                    throw new Error(`Failed to add customer: ${response.statusText}`);
+                }
+                getCustomers();
+
+        } catch (error) {
+            
         }
     }
     

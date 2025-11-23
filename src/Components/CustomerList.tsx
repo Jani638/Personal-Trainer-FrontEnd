@@ -4,6 +4,7 @@ import type { GridColDef, GridRowParams} from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
+import Button from "@mui/material/Button";
 
 
 
@@ -22,7 +23,8 @@ export default function CustomerList(){
             type: 'actions',
             width: 150,
             getActions: (params: GridRowParams) => [
-                <EditCustomer handleUpdate={handleUpdate} url={params.row._links.self.href} currentCustomer={params.row}/>
+                <EditCustomer handleUpdate={handleUpdate} url={params.row._links.self.href}currentCustomer={params.row}/>,
+                <Button size="small" color="error" onClick={() => {handleDelete(params.id as string)}}>DELETE</Button>
             ]
         }
     ];
@@ -73,12 +75,29 @@ export default function CustomerList(){
             
             const response = await fetch(url, options);
                 if(!response.ok) {
-                    throw new Error(`Failed to add customer: ${response.statusText}`);
+                    throw new Error(`Failed to edit customer: ${response.statusText}`);
                 }
                 getCustomers();
 
         } catch (error) {
-            
+            console.log(error);
+        }
+    }
+
+    const handleDelete = async (url: string) => {
+        try {
+            const options = {
+                method: 'DELETE'
+            };
+
+            const response = await fetch(url, options);
+            if(!response.ok){
+                throw new Error(`Failed to delete customer: ${response.statusText}`)
+            }
+            getCustomers();
+
+        } catch (error) {
+            console.log(error);
         }
     }
     

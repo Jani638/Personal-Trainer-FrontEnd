@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
 import Button from "@mui/material/Button";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 
@@ -19,12 +20,12 @@ export default function CustomerList(){
         {field: 'city', headerName: 'City', flex: 1},
         {field: 'email', headerName: 'Email', flex: 1},
         {field: 'phone', headerName: 'Phone', flex: 1},
-        {field: 'actions', flex: 1,
+        {field: 'actions', headerName: 'Actions', flex: 1,
             type: 'actions',
             width: 150,
             getActions: (params: GridRowParams) => [
                 <EditCustomer handleUpdate={handleUpdate} url={params.row._links.self.href}currentCustomer={params.row}/>,
-                <Button size="small" color="error" onClick={() => {handleDelete(params.id as string)}}>DELETE</Button>
+                <Button size="small" startIcon={<DeleteForeverIcon/>} color="error" onClick={() => {handleDelete(params.id as string)}}/>
             ]
         }
     ];
@@ -108,6 +109,7 @@ export default function CustomerList(){
         <AddCustomer handleAdd={handleAdd} />
         <div>
             <DataGrid 
+            showToolbar
             getRowId={(row) => row._links.self.href} 
             rows={customers} 
             columns={columns} 

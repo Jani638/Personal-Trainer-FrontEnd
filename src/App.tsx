@@ -4,6 +4,9 @@ import Button from "@mui/material/Button";
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import React from 'react';
+import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import HomeIcon from '@mui/icons-material/Home';
 
 function App() {
 
@@ -17,16 +20,19 @@ function App() {
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         <ListItem disablePadding>
+          <HomeIcon/>
           <ListItemButton component={Link} to="/">
             <ListItemText primary="Home"/>
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
+          <AccountBoxIcon/>
           <ListItemButton component={Link} to="/customers">
             <ListItemText primary="Customers"/>
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
+          <DirectionsRunIcon/>
           <ListItemButton component={Link} to="/trainings">
             <ListItemText primary="Trainings"/>
           </ListItemButton>

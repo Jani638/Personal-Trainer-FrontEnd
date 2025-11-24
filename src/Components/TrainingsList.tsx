@@ -17,12 +17,12 @@ export default function TrainingsList(){
             {field: 'firstname', 
             headerName: 'First Name', 
             flex: 1, 
-            valueGetter: (value, row) => row.customer.firstname},
+            valueGetter: (_, row) => row.customer.firstname},
 
             {field: 'lastname', 
             headerName: 'Last Name', 
             flex: 1,
-            valueGetter: (value, row) => row.customer.lastname},
+            valueGetter: (_, row) => row.customer.lastname},
             
             {field: 'activity', headerName: 'Activity', flex: 1},
             {field: 'duration', headerName: 'Duration', flex: 1},

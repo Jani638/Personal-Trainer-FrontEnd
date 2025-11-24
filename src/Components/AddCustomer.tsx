@@ -1,6 +1,7 @@
 import React from "react";
 import type { AddCustomerProps } from "../types";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export default function AddCustomer(props: AddCustomerProps) {
 
@@ -34,9 +35,7 @@ export default function AddCustomer(props: AddCustomerProps) {
 
     return(
         <React.Fragment>
-            <Button onClick={() => handleClickOpen()}>
-            Add customer
-                </Button>
+            <Button startIcon={<AddCircleOutlineIcon/>} color="inherit" onClick={() => handleClickOpen()}>Add customer</Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New Customer</DialogTitle>
                 <DialogContent>

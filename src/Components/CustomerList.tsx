@@ -6,6 +6,12 @@ import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
 import Button from "@mui/material/Button";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Toolbar, Typography } from "@mui/material";
+import { Search } from "@mui/icons-material";
+import SearchIcon from '@mui/icons-material/Search';
+
+
+
 
 
 
@@ -106,7 +112,7 @@ export default function CustomerList(){
 
     return (
         <div>
-        <AddCustomer handleAdd={handleAdd} />
+            <AddCustomer handleAdd={handleAdd} />
         <div>
             <DataGrid 
             showToolbar

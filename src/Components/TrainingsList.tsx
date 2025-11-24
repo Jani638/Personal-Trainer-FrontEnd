@@ -82,6 +82,7 @@ export default function TrainingsList() {
     return (
         <div>
             <DataGrid
+                showToolbar
                 getRowId={(row) => row.id}
                 rows={trainings}
                 columns={columns}

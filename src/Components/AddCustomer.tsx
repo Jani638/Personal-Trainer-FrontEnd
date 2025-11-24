@@ -1,10 +1,11 @@
 import React from "react";
 import type { AddCustomerProps } from "../types";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Snackbar, Alert } from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export default function AddCustomer(props: AddCustomerProps) {
     const [open, setOpen] = React.useState(false);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -12,6 +13,10 @@ export default function AddCustomer(props: AddCustomerProps) {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,6 +35,7 @@ export default function AddCustomer(props: AddCustomerProps) {
         };
         props.handleAdd(customer)
         handleClose();
+        setSnackbarOpen(true);
     };
 
     return(
@@ -111,6 +117,16 @@ export default function AddCustomer(props: AddCustomerProps) {
                     </Button>
                 </DialogActions>
             </Dialog>
+            <Snackbar 
+                open={snackbarOpen} 
+                autoHideDuration={3000} 
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+                    Customer added successfully!
+                </Alert>
+            </Snackbar>
         </React.Fragment>
     );
 }

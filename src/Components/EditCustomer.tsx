@@ -3,9 +3,9 @@ import type { EditCustomerProps } from "../types"
 import React from "react";
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function EditCustomer(props: EditCustomerProps){
+export default function EditCustomer(props: EditCustomerProps) {
     const [open, setOpen] = React.useState(false);
-    const [customerForm, setCustomerForm] = React.useState(props.currentCustomer)
+    const [customerForm, setCustomerForm] = React.useState(props.currentCustomer);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -16,7 +16,7 @@ export default function EditCustomer(props: EditCustomerProps){
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCustomerForm({...customerForm, [event.target.name]: event.target.value})
+        setCustomerForm({...customerForm, [event.target.name]: event.target.value});
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +33,7 @@ export default function EditCustomer(props: EditCustomerProps){
             email: customerData.email,
             phone: customerData.phone
         };
-        props.handleUpdate(props.url, customer)
+        props.handleUpdate(props.url, customer);
         handleClose();
     };
 
@@ -45,81 +45,81 @@ export default function EditCustomer(props: EditCustomerProps){
                 <DialogContent>
                     <form onSubmit={handleSubmit} id='subscription-form'>
                         <TextField
-                        required
-                        id="firstname"
-                        name="firstname"
-                        label="Firstname"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.firstname}
+                            required
+                            id="firstname"
+                            name="firstname"
+                            label="Firstname"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.firstname}
                         />
                         <TextField
-                        required
-                        id="lastname"
-                        name="lastname"
-                        label="Lastname"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.lastname}
+                            required
+                            id="lastname"
+                            name="lastname"
+                            label="Lastname"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.lastname}
                         />
                         <TextField
-                        required
-                        id="streetaddress"
-                        name="streetaddress"
-                        label="Streetaddress"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.streetaddress}
+                            required
+                            id="streetaddress"
+                            name="streetaddress"
+                            label="Streetaddress"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.streetaddress}
                         />
                         <TextField
-                        required
-                        id="postcode"
-                        name="postcode"
-                        label="Postcode"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.postcode}
+                            required
+                            id="postcode"
+                            name="postcode"
+                            label="Postcode"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.postcode}
                         />
                         <TextField
-                        required
-                        id="city"
-                        name="city"
-                        label="City"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.city}
+                            required
+                            id="city"
+                            name="city"
+                            label="City"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.city}
                         />
                         <TextField
-                        required
-                        id="email"
-                        name="email"
-                        label="Email"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.email}
+                            required
+                            id="email"
+                            name="email"
+                            label="Email"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.email}
                         />
                         <TextField
-                        required
-                        id="phone"
-                        name="phone"
-                        label="Phone"
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        onChange={handleChange}
-                        value={customerForm.phone}
+                            required
+                            id="phone"
+                            name="phone"
+                            label="Phone"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            onChange={handleChange}
+                            value={customerForm.phone}
                         />
                     </form>
                 </DialogContent>

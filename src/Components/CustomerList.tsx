@@ -7,9 +7,13 @@ import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
 import Button from "@mui/material/Button";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Snackbar, Alert } from "@mui/material";
+
 
 export default function CustomerList(){
     const [customers, setCustomers] = useState<Tcustomer[]>([]);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
 
     const columns: GridColDef[] = [
         {field: 'firstname', headerName: 'First Name', flex: 1},
@@ -25,8 +29,8 @@ export default function CustomerList(){
             flex: 2,
             type: 'actions',
             getActions: (params: GridRowParams) => [
-                <AddTraining handleAdd={handleAddTraining} customerLink={params.row._links.self.href} firstname={params.row.firstname} lastname={params.row.lastname}/>,
-                <EditCustomer handleUpdate={handleUpdate} url={params.row._links.self.href}currentCustomer={params.row}/>,
+                <AddTraining handleAdd={handleAddTraining} customerLink={params.row._links.self.href} firstname={params.row.firstname} lastname={params.row.lastname} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage}/>,
+                <EditCustomer handleUpdate={handleUpdate} url={params.row._links.self.href} currentCustomer={params.row} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage}/>,
                 <Button size="small" startIcon={<DeleteForeverIcon/>} color="error" onClick={() => {handleDelete(params.id as string)}}/>
             ]
         }
@@ -134,6 +138,16 @@ export default function CustomerList(){
                     columns={columns} 
                 />
             </div>
+            <Snackbar 
+                open={snackbarOpen} 
+                autoHideDuration={3000} 
+                onClose={() => setSnackbarOpen(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={() => setSnackbarOpen(false)} severity="success" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

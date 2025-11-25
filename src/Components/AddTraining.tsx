@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import AddIcon from '@mui/icons-material/Add';
 import type { AddTrainingProps } from "../types";
+import React from "react";
 
 export default function AddTraining(props: AddTrainingProps) {
     const [open, setOpen] = useState(false);
@@ -32,6 +33,8 @@ export default function AddTraining(props: AddTrainingProps) {
         };
         props.handleAdd(trainingWithCustomer);
         handleClose();
+        props.setSnackbarMessage('Training added successfully!');
+        props.setSnackbarOpen(true);
     };
 
     return (

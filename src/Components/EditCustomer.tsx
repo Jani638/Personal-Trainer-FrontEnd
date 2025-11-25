@@ -14,7 +14,6 @@ export default function EditCustomer(props: EditCustomerProps) {
     const handleClose = () => {
         setOpen(false);
     };
-
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCustomerForm({...customerForm, [event.target.name]: event.target.value});
     };
@@ -35,6 +34,8 @@ export default function EditCustomer(props: EditCustomerProps) {
         };
         props.handleUpdate(props.url, customer);
         handleClose();
+        props.setSnackbarMessage('Customer edited successfully!');
+        props.setSnackbarOpen(true);
     };
 
     return(

@@ -5,6 +5,8 @@ import { DataGrid} from '@mui/x-data-grid';
 import { format } from "date-fns";
 import { Button } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import CustomToolbar from "./CustomToolbar";
+
 
 const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -79,14 +81,29 @@ export default function TrainingsList() {
 
     useEffect(() => {getTrainings(); }, []);
 
+    function Toolbar() {
+        return (
+            <CustomToolbar
+                title="Trainings"
+                exportFields={['firstname', 'lastname', 'activity', 'duration', 'date']}
+                showAddButton={false}
+            />
+        );
+    }
+
     return (
         <div>
-            <DataGrid
-                showToolbar
-                getRowId={(row) => row.id}
-                rows={trainings}
-                columns={columns}
-            />
+            <div style={{ height: 600, width: '100%' }}>
+                <DataGrid
+                    showToolbar
+                    slots={{
+                        toolbar: Toolbar
+                    }}
+                    getRowId={(row) => row.id}
+                    rows={trainings}
+                    columns={columns}
+                />
+            </div>
         </div>
     );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Tcustomer } from "../types";
 import type { GridColDef, GridRowParams} from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
-import AddCustomer from "./AddCustomer";
+import CustomToolbar from "./CustomToolbar";
 import EditCustomer from "./EditCustomer";
 import AddTraining from "./AddTraining";
 import Button from "@mui/material/Button";
@@ -127,12 +127,26 @@ export default function CustomerList(){
     
     useEffect(() => {getCustomers(); }, []);
 
+    function Toolbar() {
+        return (
+            <CustomToolbar
+                title="Customers"
+                handleAdd={handleAdd}
+                setSnackbarOpen={setSnackbarOpen}
+                setSnackbarMessage={setSnackbarMessage}
+                exportFields={['firstname', 'lastname', 'email', 'phone', 'streetaddress', 'postcode', 'city']}
+            />
+        );
+    }
+
     return (
         <div>
-            <AddCustomer handleAdd={handleAdd} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage} />
-            <div>
+            <div style={{ height: 600, width: '100%' }}>
                 <DataGrid 
                     showToolbar
+                    slots={{
+                        toolbar: Toolbar
+                    }}
                     getRowId={(row) => row._links.self.href} 
                     rows={customers} 
                     columns={columns} 

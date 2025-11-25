@@ -129,7 +129,7 @@ export default function CustomerList(){
 
     return (
         <div>
-            <AddCustomer handleAdd={handleAdd} />
+            <AddCustomer handleAdd={handleAdd} setSnackbarOpen={setSnackbarOpen} setSnackbarMessage={setSnackbarMessage} />
             <div>
                 <DataGrid 
                     showToolbar

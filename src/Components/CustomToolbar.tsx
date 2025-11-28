@@ -1,17 +1,52 @@
+import { styled } from '@mui/material/styles';
 import {
   Toolbar,
   ToolbarButton,
   ColumnsPanelTrigger,
   ExportCsv,
   QuickFilter,
+  QuickFilterControl,
+  QuickFilterClear,
   QuickFilterTrigger,
 } from '@mui/x-data-grid';
-import { Typography, Divider, Box } from '@mui/material';
+import { Typography, Divider, Box, TextField, InputAdornment, Tooltip } from '@mui/material';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import SearchIcon from '@mui/icons-material/Search';
+import CancelIcon from '@mui/icons-material/Cancel';
 import AddCustomer from './AddCustomer';
 import type { CustomToolbarProps } from '../types';
+
+type OwnerState = {
+  expanded: boolean;
+};
+
+const StyledQuickFilter = styled(QuickFilter)({
+  display: 'grid',
+  alignItems: 'center',
+});
+
+const StyledToolbarButton = styled(ToolbarButton)<{ ownerState: OwnerState }>(
+  ({ theme, ownerState }) => ({
+    gridArea: '1 / 1',
+    width: 'min-content',
+    height: 'min-content',
+    zIndex: 1,
+    opacity: ownerState.expanded ? 0 : 1,
+    pointerEvents: ownerState.expanded ? 'none' : 'auto',
+    transition: theme.transitions.create(['opacity']),
+  }),
+);
+
+const StyledTextField = styled(TextField)<{
+  ownerState: OwnerState;
+}>(({ theme, ownerState }) => ({
+  gridArea: '1 / 1',
+  overflowX: 'clip',
+  width: ownerState.expanded ? 260 : 'var(--trigger-width)',
+  opacity: ownerState.expanded ? 1 : 0,
+  transition: theme.transitions.create(['width', 'opacity']),
+}));
 
 export default function CustomToolbar({ 
     title, 
@@ -42,11 +77,57 @@ export default function CustomToolbar({
                     <FileDownloadIcon fontSize="small" />
                 </ExportCsv>
                 
-                <QuickFilter>
-                    <QuickFilterTrigger render={<ToolbarButton />}>
-                        <SearchIcon fontSize="small" />
-                    </QuickFilterTrigger>
-                </QuickFilter>
+                <StyledQuickFilter>
+                    <QuickFilterTrigger
+                        render={(triggerProps, state) => (
+                            <Tooltip title="Search" enterDelay={0}>
+                                <StyledToolbarButton
+                                    {...triggerProps}
+                                    ownerState={{ expanded: state.expanded }}
+                                    color="default"
+                                    aria-disabled={state.expanded}
+                                >
+                                    <SearchIcon fontSize="small" />
+                                </StyledToolbarButton>
+                            </Tooltip>
+                        )}
+                    />
+                    <QuickFilterControl
+                        render={({ ref, ...controlProps }, state) => (
+                            <StyledTextField
+                                {...controlProps}
+                                ownerState={{ expanded: state.expanded }}
+                                inputRef={ref}
+                                aria-label="Search"
+                                placeholder="Search..."
+                                size="small"
+                                slotProps={{
+                                    input: {
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <SearchIcon fontSize="small" />
+                                            </InputAdornment>
+                                        ),
+                                        endAdornment: state.value ? (
+                                            <InputAdornment position="end">
+                                                <QuickFilterClear
+                                                    edge="end"
+                                                    size="small"
+                                                    aria-label="Clear search"
+                                                    material={{ sx: { marginRight: -0.75 } }}
+                                                >
+                                                    <CancelIcon fontSize="small" />
+                                                </QuickFilterClear>
+                                            </InputAdornment>
+                                        ) : null,
+                                        ...controlProps.slotProps?.input,
+                                    },
+                                    ...controlProps.slotProps,
+                                }}
+                            />
+                        )}
+                    />
+                </StyledQuickFilter>
                 
                 {showAddButton && handleAdd && setSnackbarOpen && setSnackbarMessage && (
                     <>

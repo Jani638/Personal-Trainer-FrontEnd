@@ -7,6 +7,7 @@ import React from 'react';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import HomeIcon from '@mui/icons-material/Home';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 function App() {
 
@@ -35,6 +36,12 @@ function App() {
           <DirectionsRunIcon/>
           <ListItemButton component={Link} to="/trainings">
             <ListItemText primary="Trainings"/>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <CalendarMonthIcon/>
+          <ListItemButton component={Link} to="/calendar">
+            <ListItemText primary="Calendar"/>
           </ListItemButton>
         </ListItem>
       </List>

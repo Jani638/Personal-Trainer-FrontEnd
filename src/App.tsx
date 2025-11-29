@@ -8,6 +8,7 @@ import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import HomeIcon from '@mui/icons-material/Home';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 function App() {
 
@@ -42,6 +43,12 @@ function App() {
           <CalendarMonthIcon/>
           <ListItemButton component={Link} to="/calendar">
             <ListItemText primary="Calendar"/>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <BarChartIcon/>
+          <ListItemButton component={Link} to="/statistics">
+            <ListItemText primary="Statistics"/>
           </ListItemButton>
         </ListItem>
       </List>

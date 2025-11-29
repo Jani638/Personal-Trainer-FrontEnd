@@ -1,19 +1,26 @@
 import { styled } from '@mui/material/styles';
 import {
-  Toolbar,
-  ToolbarButton,
   ColumnsPanelTrigger,
   ExportCsv,
   QuickFilter,
-  QuickFilterControl,
   QuickFilterClear,
+  QuickFilterControl,
   QuickFilterTrigger,
+  Toolbar,
+  ToolbarButton,
 } from '@mui/x-data-grid';
-import { Typography, Divider, Box, TextField, InputAdornment, Tooltip } from '@mui/material';
-import ViewColumnIcon from '@mui/icons-material/ViewColumn';
+import {
+  Box,
+  Divider,
+  InputAdornment,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import SearchIcon from '@mui/icons-material/Search';
-import CancelIcon from '@mui/icons-material/Cancel';
+import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import AddCustomer from './AddCustomer';
 import type { CustomToolbarProps } from '../types';
 
@@ -48,98 +55,98 @@ const StyledTextField = styled(TextField)<{
   transition: theme.transitions.create(['width', 'opacity']),
 }));
 
-export default function CustomToolbar({ 
-    title, 
-    handleAdd, 
-    setSnackbarOpen, 
-    setSnackbarMessage,
-    exportFields = [],
-    showAddButton = true
+export default function CustomToolbar({
+  title,
+  handleAdd,
+  setSnackbarOpen,
+  setSnackbarMessage,
+  exportFields = [],
+  showAddButton = true,
 }: CustomToolbarProps) {
-    return (
-        <Toolbar>
-            <Typography variant="h6" sx={{ flex: 1 }}>
-                {title}
-            </Typography>
-            
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                <ColumnsPanelTrigger render={<ToolbarButton />}>
-                    <ViewColumnIcon fontSize="small" />
-                </ColumnsPanelTrigger>
-                
-                <ExportCsv 
-                    render={<ToolbarButton />}
-                    options={{
-                        fields: exportFields.length > 0 ? exportFields : undefined,
-                        includeHeaders: false
-                    }}
+  return (
+    <Toolbar>
+      <Typography variant="h6" sx={{ flex: 1 }}>
+        {title}
+      </Typography>
+
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+        <ColumnsPanelTrigger render={<ToolbarButton />}>
+          <ViewColumnIcon fontSize="small" />
+        </ColumnsPanelTrigger>
+
+        <ExportCsv
+          render={<ToolbarButton />}
+          options={{
+            fields: exportFields.length > 0 ? exportFields : undefined,
+            includeHeaders: false,
+          }}
+        >
+          <FileDownloadIcon fontSize="small" />
+        </ExportCsv>
+
+        <StyledQuickFilter>
+          <QuickFilterTrigger
+            render={(triggerProps, state) => (
+              <Tooltip title="Search" enterDelay={0}>
+                <StyledToolbarButton
+                  {...triggerProps}
+                  ownerState={{ expanded: state.expanded }}
+                  color="default"
+                  aria-disabled={state.expanded}
                 >
-                    <FileDownloadIcon fontSize="small" />
-                </ExportCsv>
-                
-                <StyledQuickFilter>
-                    <QuickFilterTrigger
-                        render={(triggerProps, state) => (
-                            <Tooltip title="Search" enterDelay={0}>
-                                <StyledToolbarButton
-                                    {...triggerProps}
-                                    ownerState={{ expanded: state.expanded }}
-                                    color="default"
-                                    aria-disabled={state.expanded}
-                                >
-                                    <SearchIcon fontSize="small" />
-                                </StyledToolbarButton>
-                            </Tooltip>
-                        )}
-                    />
-                    <QuickFilterControl
-                        render={({ ref, ...controlProps }, state) => (
-                            <StyledTextField
-                                {...controlProps}
-                                ownerState={{ expanded: state.expanded }}
-                                inputRef={ref}
-                                aria-label="Search"
-                                placeholder="Search..."
-                                size="small"
-                                slotProps={{
-                                    input: {
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <SearchIcon fontSize="small" />
-                                            </InputAdornment>
-                                        ),
-                                        endAdornment: state.value ? (
-                                            <InputAdornment position="end">
-                                                <QuickFilterClear
-                                                    edge="end"
-                                                    size="small"
-                                                    aria-label="Clear search"
-                                                    material={{ sx: { marginRight: -0.75 } }}
-                                                >
-                                                    <CancelIcon fontSize="small" />
-                                                </QuickFilterClear>
-                                            </InputAdornment>
-                                        ) : null,
-                                        ...controlProps.slotProps?.input,
-                                    },
-                                    ...controlProps.slotProps,
-                                }}
-                            />
-                        )}
-                    />
-                </StyledQuickFilter>
-                
-                {showAddButton && handleAdd && setSnackbarOpen && setSnackbarMessage && (
-                    <>
-                        <Divider orientation="vertical" flexItem />
-                        <AddCustomer 
-                            handleAdd={handleAdd} 
-                            setSnackbarOpen={setSnackbarOpen} 
-                            setSnackbarMessage={setSnackbarMessage} 
-                        />
-                    </>
-                )}
-            </Box>
-        </Toolbar>
-    );
+                  <SearchIcon fontSize="small" />
+                </StyledToolbarButton>
+              </Tooltip>
+            )}
+          />
+          <QuickFilterControl
+            render={({ ref, ...controlProps }, state) => (
+              <StyledTextField
+                {...controlProps}
+                ownerState={{ expanded: state.expanded }}
+                inputRef={ref}
+                aria-label="Search"
+                placeholder="Search..."
+                size="small"
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon fontSize="small" />
+                      </InputAdornment>
+                    ),
+                    endAdornment: state.value ? (
+                      <InputAdornment position="end">
+                        <QuickFilterClear
+                          edge="end"
+                          size="small"
+                          aria-label="Clear search"
+                          material={{ sx: { marginRight: -0.75 } }}
+                        >
+                          <CancelIcon fontSize="small" />
+                        </QuickFilterClear>
+                      </InputAdornment>
+                    ) : null,
+                    ...controlProps.slotProps?.input,
+                  },
+                  ...controlProps.slotProps,
+                }}
+              />
+            )}
+          />
+        </StyledQuickFilter>
+
+        {showAddButton && handleAdd && setSnackbarOpen && setSnackbarMessage && (
+          <>
+            <Divider orientation="vertical" flexItem />
+            <AddCustomer
+              handleAdd={handleAdd}
+              setSnackbarOpen={setSnackbarOpen}
+              setSnackbarMessage={setSnackbarMessage}
+            />
+          </>
+        )}
+      </Box>
+    </Toolbar>
+  );
 }

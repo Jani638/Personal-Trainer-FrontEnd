@@ -1,8 +1,7 @@
 import TrainingsList from '../Components/TrainingsList';
 
 function Trainings() {
-    
-  return <TrainingsList/>;
+  return <TrainingsList />;
 }
 
 export default Trainings;

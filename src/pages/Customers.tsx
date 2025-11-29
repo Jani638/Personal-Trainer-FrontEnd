@@ -1,8 +1,7 @@
 import CustomerList from '../Components/CustomerList';
 
 function Customers() {
-
-  return <CustomerList/>;
+  return <CustomerList />;
 }
 
 export default Customers;

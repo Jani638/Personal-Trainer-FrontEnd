@@ -21,3 +21,7 @@ Lisää seuraavat CRUD toiminnallisuudet asiakas ja harjoitus listasivuille:
 - Lisää export toiminnallisuus, jolla käyttäjä voi viedä asiakastiedot CSV tiedostoon. Suodata tiedostosta pois kaikki ylimääräinen tieto (esim. painike sarakkeet)
 - Lisää kalenterisivu, jossa näkyy kaikki varatut harjoitukset kalenterissa (viikkonäkymä, kuukausnäkymä, päivänäkymä). Kts. esimerkki kuva.
 - Asenna käyttöliittymä valitsemallesi pilvipalvelimelle
+# Osa 4
+- Lisää tilastosivu, josta käyttäjä voi nähdä kuvaajassa kuinka paljon eri harjoitustyyppejä (activity) on ajallisesti varattu minuutteina.
+# Valmis käyttöliittymä:
+## Tehtävä on julkaistu Netlify palvelussa: [Personal Trainer - sovellus](https://peronal-trainer-frontend.netlify.app/)

@@ -66,7 +66,7 @@ function App() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" sx={{marginBottom: 2}}>
         <Toolbar sx={{ paddingLeft: 2, paddingRight: 2 }}>
           <Button
             size="large"

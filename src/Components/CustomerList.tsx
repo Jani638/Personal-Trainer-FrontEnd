@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Tcustomer } from "../types";
+import type { Tcustomer, Ttrainings } from "../types";
 import type { GridColDef, GridRowParams} from '@mui/x-data-grid';
 import { DataGrid } from '@mui/x-data-grid';
 import CustomToolbar from "./CustomToolbar";
@@ -68,7 +68,7 @@ export default function CustomerList(){
         }
     }
 
-    const handleAddTraining = async(newTraining: any) => {
+    const handleAddTraining = async(newTraining: Ttrainings & { customer: string }) => {
         try {
             const options = {
                 method: 'POST',

@@ -17,7 +17,7 @@ export default function AddCustomer(props: AddCustomerProps) {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        const customerData = Object.fromEntries((formData as any).entries());
+        const customerData = Object.fromEntries(Array.from(formData.entries())) as Record<string, unknown>;
         const customer = { 
             id: customerData.id,
             firstname: customerData.firstname,

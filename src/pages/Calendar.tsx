@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Box, Paper } from '@mui/material';
-import type { CalendarEvent } from '../types';
+import type { CalendarEvent, TrainingWithCustomer } from '../types';
 
 const ACTIVITY_COLORS: { [key: string]: string } = {
     'Spinning': '#36b1f8ff',
@@ -18,7 +18,7 @@ const getActivityColor = (activity: string): string => {
     return ACTIVITY_COLORS[activity] || '#757575';
 };
 
-const formatTrainingsToEvents = (trainings: any[]): CalendarEvent[] => {
+const formatTrainingsToEvents = (trainings: TrainingWithCustomer[]): CalendarEvent[] => {
     return trainings.map((training) => {
         const startDate = new Date(training.date);
         const endDate = new Date(startDate.getTime() + training.duration * 60000);
@@ -77,7 +77,7 @@ export default function Calendar() {
                     events={events}
                     height="auto"
                     slotMinTime="06:00:00"
-                    slotMaxTime="22:00:00"
+                    slotMaxTime="23:00:00"
                     allDaySlot={false}
                     nowIndicator={true}
                     eventClick={(info) => {

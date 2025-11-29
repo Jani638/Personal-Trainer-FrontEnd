@@ -53,3 +53,6 @@ export type CalendarEvent = {
     end: string;
     backgroundColor?: string;
 }
+
+export type TrainingWithCustomer = 
+Ttrainings & { customer: { firstname: string; lastname: string } };

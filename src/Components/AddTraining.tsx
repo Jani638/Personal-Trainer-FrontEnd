@@ -23,12 +23,12 @@ export default function AddTraining(props: AddTrainingProps) {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        const trainingData = Object.fromEntries(Array.from(formData.entries())) as Record<string, unknown>;
+        const trainingData = Object.fromEntries((formData as any).entries());
         
         const trainingWithCustomer = {
-            date: trainingData.date,
+            date: String(trainingData.date),
             duration: Number(trainingData.duration),
-            activity: trainingData.activity,
+            activity: String(trainingData.activity),
             customer: props.customerLink
         };
         props.handleAdd(trainingWithCustomer);

@@ -17,16 +17,16 @@ export default function AddCustomer(props: AddCustomerProps) {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
-        const customerData = Object.fromEntries(Array.from(formData.entries())) as Record<string, unknown>;
+        const customerData = Object.fromEntries((formData as any).entries());
         const customer = { 
-            id: customerData.id,
-            firstname: customerData.firstname,
-            lastname: customerData.lastname,
-            streetaddress: customerData.streetaddress,
-            postcode: customerData.postcode,
-            city: customerData.city,
-            email: customerData.email,
-            phone: customerData.phone
+            id: Number(customerData.id),
+            firstname: String(customerData.firstname),
+            lastname: String(customerData.lastname),
+            streetaddress: String(customerData.streetaddress),
+            postcode: String(customerData.postcode),
+            city: String(customerData.city),
+            email: String(customerData.email),
+            phone: String(customerData.phone)
         };
         props.handleAdd(customer)
         handleClose();

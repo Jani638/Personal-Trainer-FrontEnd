@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import type { Ttrainings } from "../types";
+import type { Ttrainings, ActivityStats } from "../types";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { groupBy, sumBy } from "lodash";
 import { Box, CircularProgress, Typography } from "@mui/material";
-
-interface ActivityStats {
-  activity: string;
-  totalDuration: number;
-}
 
 function Statistics() {
   const [data, setData] = useState<ActivityStats[]>([]);
@@ -62,7 +57,7 @@ function Statistics() {
   }
 
   return (
-    <Box sx={{ width: "100%", height: 400, display: "flex", flexDirection: "column" }}>
+    <Box sx={{ width: "100%", height: 500, display: "flex", flexDirection: "column" }}>
       <Typography variant="h5" sx={{ marginBottom: 2 }}>
         Training Statistics by Activity
       </Typography>

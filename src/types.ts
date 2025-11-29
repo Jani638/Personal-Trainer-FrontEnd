@@ -56,3 +56,8 @@ export type CalendarEvent = {
 
 export type TrainingWithCustomer = 
 Ttrainings & { customer: { firstname: string; lastname: string } };
+
+export type ActivityStats = {
+    activity: string;
+    totalDuration: number;
+}
